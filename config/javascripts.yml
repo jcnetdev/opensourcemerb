@@ -1,0 +1,17 @@
+javascripts:
+  - prototype-cache:
+    - prototype
+    - scriptaculous/scriptaculous
+
+  - jquery-cache:
+    - jquery
+    - jquery.ext/*
+
+  - libraries-cache:
+    - libraries/*
+  
+  - application-cache:
+    - common/*
+    - components/*
+    - application
+    - behaviors

@@ -1,0 +1,28 @@
+!!! Strict
+%html{html_attrs}
+  %head
+    %meta{"http-equiv" => "Content-type", "content" => "text/html; charset=utf-8"}
+    = title :site => AppConfig.site_name
+    = meta_tags
+    
+    = stylesheets
+    = javascripts
+
+    = auto_discovery_link_tag(:atom, url(:projects_feed), :title => "Latest Apps")
+    = auto_discovery_link_tag(:atom, url(:upcoming_feed), :title => "Upcoming Apps")
+    - if AppConfig.blog_rss
+      = auto_link(:atom, AppConfig.blog_feed, :title => "Latest Blog Posts")
+    
+  %body
+    .body-main
+      .page-content
+        = partial "layout/header"
+        = flash_boxes
+        = catch_content :for_layout
+        = clear
+    .body-bottom
+      .page-content
+        = partial "layout/footer"
+        
+    - if production?
+      = partial "layout/tracking"
