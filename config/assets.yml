@@ -1,0 +1,26 @@
+javascripts:
+  - prototype-cache:
+    - prototype
+    - scriptaculous/scriptaculous
+
+  - jquery-cache:
+    - jquery
+    - jquery_compat
+    - jquery.ext/*.js
+
+  - libraries-cache:
+    - libraries/*.js
+  
+  - application-cache:
+    - common/*.js
+    - components/*.js
+    - application
+    - behaviors
+
+stylesheets:
+  - all: 
+    - blueprint
+    - util
+    - forms
+    - application
+    - v2/**/*.css

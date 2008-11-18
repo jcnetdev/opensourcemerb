@@ -14,4 +14,7 @@ class User
   property :id,     Serial
   property :login,  String
   
+  def logged_in?
+    true
+  end
 end

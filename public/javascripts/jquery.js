@@ -3547,5 +3547,3 @@ jQuery.each([ "Height", "Width" ], function(i, name){
 	};
 
 });})();
-
-$j = jQuery.noConflict();

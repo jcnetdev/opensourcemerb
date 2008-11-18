@@ -1,0 +1,30 @@
+#body.about .details p, #body.about .details ul {
+  font-size: 14px; }
+#body.about .details p {
+  margin: 0 0 15px 0; }
+#body.about #about_tabs form .field {
+  margin-bottom: 0; }
+#body.about #about_tabs form input[type=text], #body.about #about_tabs form textarea {
+  width: 200px; }
+#body.about #about_tabs form textarea {
+  height: 50px; }
+#body.about #about_tabs form .actions {
+  margin-top: 10px; }
+#body.about #about_tabs .tabs p {
+  line-height: 2em; }
+#body.about #about_tabs .tabs ul {
+  margin-top: 1em; }
+#body.about #spread_tab {
+  max-height: 800px;
+  overflow: visible; }
+#body.about .details.main.preview {
+  border-width: 5px;
+  background-color: #f7f7f7; }
+  #body.about .details.main.preview h2 {
+    color: #313062;
+    font-size: 1.3em; }
+  #body.about .details.main.preview .actions {
+    padding-top: 10px; }
+  #body.about .details.main.preview .entry {
+    font-size: 15px;
+    color: #666; }

@@ -7,6 +7,8 @@
     
     = stylesheets
     = javascripts
+    
+    = css_include_tag "debug" if Merb.env?(:development)
 
     = auto_discovery_link_tag(:atom, url(:projects_feed), :title => "Latest Apps")
     = auto_discovery_link_tag(:atom, url(:upcoming_feed), :title => "Upcoming Apps")

@@ -1,0 +1,11 @@
+- unless @hide_login_panel
+  - if current_user.logged_in?
+    .login.current
+      Logged in as:
+      %strong= link_to current_user.login, resource(current_user)
+  - else
+    .login
+      .links
+        = link_to "Login", "#"
+        | 
+        = link_to "Sign Up", "#"

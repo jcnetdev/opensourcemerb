@@ -14,7 +14,7 @@ Merb::Config.use { |c|
   # c[:log_file]  = Merb.root / "log" / "development.log"
   
   # for testing
-  c[:bundle_assets] = true
+  # c[:bundle_assets] = true
 }
 
 # plugin settings
