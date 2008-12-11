@@ -1,0 +1,17 @@
+-# hide for nonspammers
+.hosted-instance
+  = link_to image_tag("link.png"), hosted_instance.url
+  = link_to hosted_instance.title, hosted_instance.url
+  = link_to "more info", "#", :class => "project-action toggle", :rel => "#"+dom_id(hosted_instance)
+
+  .hosted-instance-about{:id => dom_id(hosted_instance)}
+    - if hosted_instance.description.blank?
+      [No Description Entered]
+    - else
+      = simple_format h(hosted_instance.description)
+  
+    - if hosted_instance.owned_by?(current_user)
+      %span.actions
+        = link_to "edit", url(:edit_project_hosted_instance, hosted_instance.project, hosted_instance)
+        |
+        = link_to "delete", url(:project_hosted_instance, hosted_instance.project, hosted_instance), :method => :delete, :confirm => "Are you sure you want to delete this link?"

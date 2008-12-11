@@ -1,0 +1,17 @@
+- require_js "lightview"
+- require_css "lightview"
+
+- screenshots ||= []
+
+-# Project Screenshots
+= tabs do
+  = tab "Screenshots", "screenshots" do
+    - if screenshots.present?
+      .screenshots= partial "screenshots/screenshot", :with => screenshots, :as => :screenshot
+
+    = check_empty(screenshots, "screenshots") do
+      = br
+      = link_to "Upload One Now...", "#", :class => "switch-to-last"        
+
+  = tab "upload new...", "screenshots_add" do
+    .tab-form= partial "screenshots/form"

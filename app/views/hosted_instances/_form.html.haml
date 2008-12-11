@@ -1,0 +1,18 @@
+- hosted_instance ||= HostedInstance.new
+
+= form_for hosted_instance, :action => url(:project_hosted_instances, @project) do
+  .field= text_field :title, :label => "Link Name"
+  .field= text_field :url, :label => "Link URL"
+  .field= text_area :description, :label => "Notes, demo logins, etc.. (optional)"
+
+  - if hosted_instance.new_record?
+    .field= text_field :antispam, :label => AppConfig.spam_question, :separator => ""
+  
+  .actions
+    - if hosted_instance.new_record?
+      = submit "Add Link"
+    - else
+      = submit "Update Link"
+    or
+    = link_to "cancel", @project, :class => "switch-to-first"
+    = progress

@@ -1,0 +1,13 @@
+= form(:action => url(:project_screenshots, @project), :multipart => true) do
+  %div.field.file_field
+    = link_to_image "add-sm.png", "#", :class => "add-screenshot-field right"
+    = label "Upload Screenshots"
+    = file_field :name => "screenshots[][screenshot]", :size => "25"
+    
+  .actions
+    = submit "Upload"
+    or 
+    = link_to "cancel", "#", :class => "switch-to-first"
+    = progress
+  
+  = br

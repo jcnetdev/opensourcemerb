@@ -1,0 +1,12 @@
+- versions ||= [] 
+
+-# Project Versions
+= tabs do
+  = tab "Downloads", "versions" do
+    = partial "versions/version", :with => versions, :as => :version
+    = check_empty(versions, "downloads") do
+      = br
+      = link_to "Upload One Now...", "#", :class => "switch-to-last"      
+    
+  = tab "Upload New...", "versions_add" do
+    .tab-form= partial "versions/form"

@@ -1,0 +1,37 @@
+= tabs(:class => "size-2") do
+  = partial "projects/parts/sidebar"
+
+  - if @my_projects.present?
+    = tab "Bookmarked", "projects_add", :class => "scroll-250" do
+      #my_bookmarks= partial "bookmarks/bookmark_list", :projects => @my_projects, :action => ["View All Bookmarks", url(:user, current_user)]
+  - else
+    = blank_tab
+
+- if @latest_activities and @tags and @top_downloaded
+  = tabs(:class => "size-3") do
+    = tab "Recent", "recent_activity", :class => "scroll-200" do
+      = partial "projects/parts/activity_list", :activities => @latest_activities  
+  
+    = tab "Tag Cloud", "tagcloud" do
+      .tags
+        - tag_cloud @tags, %w(level-1 level-2 level-3) do |tag, css_class|
+          %span{:class => css_class, :title => "#{tag.count} projects"}
+            = display_tag(tag)
+
+    = tab "Top Apps", "top_counts" do
+      .counts.first
+        %strong Top Downloaded
+        %ul
+          - @top_downloaded.each do |project|
+            %li
+              = link_to project.title, project
+              %span.stat= pluralize(project.downloads, "download")
+      
+      .counts
+        %strong Top Bookmarked
+        %ul
+          - @top_bookmarked.each do |project|
+            %li
+              = link_to project.title, project
+              %span.stat== Bookmarked by #{pluralize(project.bookmarks_count, "person")}
+

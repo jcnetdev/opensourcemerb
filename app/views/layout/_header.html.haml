@@ -10,9 +10,9 @@
   #menu
     %ul
       - if active_tab.is_a? String
-        %li= menu_item(active_tab, url, true)
-      %li= menu_item("Gallery (xxx)", url(:gallery), active_tab == :gallery)
-      %li= menu_item("Upcoming (xxx)", url(:upcoming), active_tab == :upcoming)
+        %li= menu_item(active_tab, "#", true)
+      %li= menu_item("Gallery (#{Project.in_gallery.count})", url(:gallery), active_tab == :gallery)
+      %li= menu_item("Upcoming (#{Project.upcoming.count})", url(:upcoming), active_tab == :upcoming)
       %li= menu_item("Profile", "#", active_tab == :profile)
       
     = clear

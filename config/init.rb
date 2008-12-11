@@ -22,9 +22,15 @@ end
  
 # Run this after App/Plugins are loaded
 Merb::BootLoader.after_app_loads do
+  
+  # set strategy
+  Merb::Authentication.register :anon_user_strategy, Merb.root / "lib/anon_user_strategy.rb"
+  Merb::Authentication.activate! :anon_user_strategy
+  
   # add initializers
   Dir["#{Merb.root}/config/initializers/**/*.rb"].sort.each do |initializer|
     require(initializer)
   end
+  
 end
 

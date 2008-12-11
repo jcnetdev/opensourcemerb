@@ -1,0 +1,20 @@
+- project ||= @project
+- ajax ||= false
+
+- form_for project, :action => url(:project, @project, :format => :ajax), :class => "ajax-form mini-form" do
+  = error_messages_for project
+  .field= text_field :title
+  .field= text_field :short_description
+  .field= text_area :description, :label => "About this Application"
+  .field= text_field :tag_list, :label => "Tags (comma separated)"
+  .field= text_field :license
+  .field= text_field :homepage_url, :label => "Home Page URL"
+  .field= text_field :source_url, :label => "Source Code URL"
+  .field= text_field :author_name, :label => "Author's Name"
+  .field= text_field :author_contact, :label => "Author's URL"
+  
+  .actions
+    = submit "Update Information"
+    or
+    = link_to "cancel", formatted_project_url(@project, :ajax), :class => "cancel"
+    = progress

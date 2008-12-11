@@ -25,14 +25,13 @@
         font-weight: bold;
         color: darkblue; }
   .comments .comment .comment-meta {
-    margin: 12px 0px 5px 0;
+    margin: 0px 0px 5px 0;
     font-size: 11px; }
     .comments .comment .comment-meta strong {
       font-size: .95em; }
-  .comments .comment .trackback .comment-num {
-    padding: 0 0 0 20px; }
   .comments .comment .comment-num {
     padding: 0;
+    margin-top: 5px;
     font-weight: bold;
     font-size: 1.3em;
     float: right; }

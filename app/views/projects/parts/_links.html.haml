@@ -1,0 +1,10 @@
+-# takes a :project as a local param
+
+.links
+  %ul
+    %li= link_to_image("comments-mini.png", url(:project_comments, project), :title => pluralize(project.comments.size, "comment"))
+    %li= bookmark_mini(project)
+    - if project.download_url.present?
+      %li= link_to_image("download-mini.png", url(:download_project, project), :title => "Download Latest Version")
+    
+    

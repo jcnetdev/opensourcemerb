@@ -1,0 +1,14 @@
+-# set text
+- if active_tab == :upcoming
+  - sidebar_title = "Gallery"
+  - sidebar_link = url(:gallery)
+- else
+  - sidebar_title = "Upcoming"
+  - sidebar_link = url(:upcoming)
+
+-# display tab
+= tab sidebar_title, "sidebar", :class => "scroll-250" do
+  - if @sidebar.present?
+    = partial "projects/parts/list", :projects => @sidebar, :action => ["View All #{sidebar_title} Projects", sidebar_link]
+  - else
+    %p== No #{sidebar_title.downcase} applications. Submit one now!

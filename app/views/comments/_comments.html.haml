@@ -1,0 +1,28 @@
+-# default comments to empty
+- comments ||= [] 
+
+= anchor("comments")
+.comments  
+  - if comments.size > 0
+    %h2 
+      = image_tag("comments.png")
+      = pluralize(comments.size, "Comment")
+      
+  -# display comments
+  - comments.each_with_index do |comment, index|
+    = anchor("comment-#{comment.id}")
+    .comment{:id => dom_id(comment)}
+      .details
+        %p.comment-meta
+          %span.comment-num
+            = link_to "##{index+1}", url(:project_comment, comment.project, comment)
+          - if comment.owner and comment.owner.registered?
+            %strong= link_to comment.author_name, comment.owner
+          - else
+            %strong= comment.author_name
+          %span.comment-time{:title => comment.created_at.formatted(:comment)}
+            == posted #{time_ago_in_words(comment.created_at)}
+            ago.
+
+        %p=simple_format(h(comment.body))
+        = comment_actions(comment)

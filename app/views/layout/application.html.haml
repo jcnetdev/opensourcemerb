@@ -5,8 +5,8 @@
     = title :site => AppConfig.site_name
     = meta_tags
     
-    = stylesheets
-    = javascripts
+    = stylesheets_from_config
+    = javascripts_from_config
     
     = css_include_tag "debug" if Merb.env?(:development)
 

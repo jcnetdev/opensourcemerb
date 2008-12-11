@@ -1,0 +1,6 @@
+#search_box
+  = form :action => url(:projects), :method => :get do
+    %fieldset
+      = text_field :id => "q", :name => "q", :value => params[:q], :class => "search_input example", :title => "Search for Applications..."
+      = image_submit "/images/find.png", :class => "search_sub find", :id => "searchsubmit"
+    = clear

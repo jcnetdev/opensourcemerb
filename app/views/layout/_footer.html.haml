@@ -2,8 +2,9 @@
   .links
     %strong LINKS:
     = link_to "Gallery", url(:gallery)
-    |
-    = link_to "My Profile", resource(current_user)
+    - if logged_in?
+      |
+      = link_to "My Profile", resource(current_user)
     |
     = link_to "About", url(:about)
     |
@@ -12,7 +13,7 @@
       |
       = link_to "Feedback", AppConfig.feedback_link
     |
-    - if current_user.logged_in?
+    - if logged_in?
       = link_to "Logout", "#", :method => :delete, :confirm => "Are you sure you want to log out?"
     - else
       = link_to "Login", "#"

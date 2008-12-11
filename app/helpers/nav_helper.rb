@@ -15,5 +15,17 @@ module Merb
     
       return @active_tab
     end
+    
+    def projects_rss
+      AppConfig.rss_url || formatted_projects_url(:atom)
+    end
+
+    def upcoming_rss
+      AppConfig.upcoming_rss_url || formatted_upcoming_projects_url(:atom)
+    end
+
+    def activity_rss
+      AppConfig.upcoming_activity_url || formatted_activity_projects_url(:atom)
+    end
   end
 end

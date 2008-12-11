@@ -1,0 +1,29 @@
+- version ||= Version.new
+
+= form_for version, :action => url(:project_versions, @project), :multipart => true do
+  
+  .attach-link
+    .field
+      .field= text_field :link, :label => "Download Link"
+      .text-right= link_to "Upload Version", "#", :class => "set-upload"
+  
+  -# .attach-download{hidden}
+  -#   .field
+  -#     .field= file_field :download, :label => "Upload Tarball", :size => "25"
+  -#     .text-right= link_to "Set Download Link", "#", :class => "set-link"
+      
+
+  .field= text_field :title, :label => "Version Name"
+  .field= text_area :notes, :label => "Update Notes (optional)"
+
+  - if version.new_record?
+    .field= text_field :antispam, :label => AppConfig.spam_question, :separator => ""
+  
+  .actions
+    - if version.new_record?
+      = submit "Add Version"
+    - else
+      = submit "Update Version"
+    or
+    = link_to "cancel", resource(@project), :class => "switch-to-first"
+    = progress

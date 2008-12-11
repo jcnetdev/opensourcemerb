@@ -1,0 +1,14 @@
+- activities ||= [] 
+
+= tabs(:class => "size-2") do
+  = tab("Latest Activity", "recent_activity") do
+    - if activities.size > 0
+      = partial "projects/parts/activity_list", :activities => activities.all(:limit => 5), :hide_project => true
+    - else
+      %p.empty No recent activity for this project.
+  
+  = tab("History (#{activities.size})", "all_activity") do
+    - if activities.size > 0
+      = partial "projects/parts/activity_list", :activities => activities.all(:order => :created_at), :hide_project => true
+    - else
+      %p.empty No recent activity for this project.

@@ -1,0 +1,13 @@
+- if project
+  .project{:id => dom_id(project), :class => cycle("start-row", "")}
+    %h2= link_to h(project.title), url(:project, project), :rel => "bookmark", :title => h(project.short_description)
+    %p.tagline= project.short_description
+  
+    -# show default screenshot
+    .screen= link_to image_tag(project.screenshot_url), url(:project, project)
+  
+    -# show ratings
+    = partial "projects/parts/ratings", :project => project, :rating_size => "small"
+  
+    -# show links
+    = partial "projects/parts/links", :project => project

@@ -28,67 +28,63 @@
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
   # # Adds the required routes for merb-auth using the password slice
-  # slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")
+  slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")
 
-  # authentication resources
-  resource :session
-  resources :users do
-    member :activate, :method => :get
-    member :spammer, :method => :put
-    member :edit_password, :method => :get
+  authenticate do
+    # authentication resources
+    resource :session
+    resources :users do
+      member :activate, :method => :get
+      member :spammer, :method => :put
+      member :edit_password, :method => :get
 
-    collection :reset_password, :method => :any
-  end
+      collection :reset_password, :method => :any
+    end
     
-  # project resources
-  resources :projects do
-    member :submit, :method => :put
-    member :approve, :method => :put
-    member :details, :method => :get
-    member :rate, :method => :post
-    member :download, :method => :get
-    collection :upcoming, :method => :get
-    collection :activity, :method => :get
+    # project resources
+    resources :projects do
+      member :submit, :method => :put
+      member :approve, :method => :put
+      member :details, :method => :get
+      member :rate, :method => :post
+      member :download, :method => :get
+      collection :upcoming, :method => :get
+      collection :activity, :method => :get
     
-    resource :bookmark
-    resources :comments
-    resources :versions do 
-      member :set, :method => :put
+      resource :bookmark
+      resources :comments
+      resources :versions do 
+        member :set, :method => :put
+      end
+      resources :screenshots do
+        member :set, :method => :put
+      end
+      resources :hosted_instances do
+        member :set, :method => :put
+      end
     end
-    resources :screenshots do
-      member :set, :method => :put
-    end
-    resources :hosted_instances do
-      member :set, :method => :put
-    end
-  end
-  match("/forgot_password").to(:controller => "users", :action => "forgot_password")
+    match("/forgot_password").to(:controller => "users", :action => "forgot_password")
   
-  # additional project routes
-  with(:controller => "projects") do
-    match("/search").to(:action => "search").name(:search)
-    match("/bookmarks").to(:action => "bookmarks").name(:bookmarks)
-    match("/gallery").to(:action => "index").name(:gallery)
-    match("/upcoming").to(:action => "upcoming").name(:upcoming)
+    # additional project routes
+    with(:controller => "projects") do
+      match("/search").to(:action => "search").name(:search)
+      match("/bookmarks").to(:action => "bookmarks").name(:bookmarks)
+      match("/gallery").to(:action => "index").name(:gallery)
+      match("/upcoming").to(:action => "upcoming").name(:upcoming)
 
-    # feed routes
-    match("/feed.:format").to(:action => "feed")
-    with(:format => "atom") do
-      match("/projects.atom").to(:action => "index").name(:projects_feed)
-      match("/upcoming.atom").to(:action => "upcoming").name(:upcoming_feed)
-      match("/feed").to(:action => "feed", :format => "atom")
+      # feed routes
+      match("/feed.:format").to(:action => "feed")
+      with(:format => "atom") do
+        match("/projects.atom").to(:action => "index").name(:projects_feed)
+        match("/upcoming.atom").to(:action => "upcoming").name(:upcoming_feed)
+        match("/feed").to(:action => "feed", :format => "atom")
+      end
     end
-  end
   
-  # page routes
-  match("/about").to(:controller => "pages", :action => "about").name(:about)
-  match("/blog").to(:controller => "pages", :action => "blog").name(:blog)
+    # page routes
+    match("/about").to(:controller => "pages", :action => "about").name(:about)
+    match("/blog").to(:controller => "pages", :action => "blog").name(:blog)
 
-  match("/").to(:controller => "projects", :action => "index").name(:root)
-  
-  # This is the default route for /:controller/:action/:id
-  # This is fine for most cases.  If you're heavily using resource-based
-  # routes, you may want to comment/remove this line to prevent
-  # clients from calling your create or destroy actions with a GET
-  default_routes
+    match("/").to(:controller => "projects", :action => "index").name(:root)
+  end
 end

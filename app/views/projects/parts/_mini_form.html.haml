@@ -1,0 +1,15 @@
+-# default project
+- project ||= Project.new
+
+#new_project_tab_form.hidden
+  = component :right_box, :css_class => "add" do
+    %h3.add Submit a New Application
+    = form_for project, :action => url(:projects), :class => "mini-form" do
+      .field= text_field :title, :label => "Application Name"
+      .field= text_field :short_description, :label => "Short Description"
+  
+      .actions.text-right
+        = image_submit "/images/buttons/next-sm.png"
+        or 
+        = link_to "Cancel", "#", :class => "toggle", :rel => "#new_project_tab_form"
+        = progress
